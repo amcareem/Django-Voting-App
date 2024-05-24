@@ -3,28 +3,40 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Log In</h2>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        {{ form|crispy }}
 
-    <div class="content-section">
-
-        <form action="" method="POST">
-            {% csrf_token %}
-
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Log In</legend>
-
-                {{ form | crispy }}
-
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Sign In</button>
+                        <div class="form-group mt-4">
+                            <button id="login-btn" class="btn btn-primary btn-block" type="submit">Sign In</button>
+                        </div>
+                    </form>
+                    <div class="text-center mt-3">
+                        <small class="text-muted">Need An Account?</small>
+                        <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
+                    </div>
+                </div>
             </div>
-        </form>
-        <div class="border-top pt-3">
-            <small class="text-muted">
-                Need An Account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
-            </small>
         </div>
-
     </div>
+</div>
 
+<style>
+    /* Add your custom CSS styles for animations and 3D effects here */
+    #login-btn:hover {
+        transform: translateY(-5px);
+        transition: transform 0.3s ease;
+    }
+
+    .card {
+        border-radius: 20px;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    }
+</style>
 {% endblock %}
