@@ -6,17 +6,17 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
+            <div class="card shadow-lg">
+                <div class="card-body p-5">
                     <h2 class="card-title text-center mb-4">Join Today</h2>
-                    <form action="" method="POST">
+                    <form action="" method="POST" class="needs-validation" novalidate>
                         {% csrf_token %}
                         {{ form|crispy }}
-
-                        <div class="form-group mt-4">
-                            <button class="btn btn-primary btn-block" type="submit">Sign Up</button>
+                        <div class="text-center mt-4">
+                            <button class="btn btn-primary btn-lg px-5" type="submit">Sign Up</button>
                         </div>
                     </form>
+                    <hr>
                     <div class="text-center mt-3">
                         <small class="text-muted">Already Have An Account?</small>
                         <a class="ml-2" href="{% url 'login' %}">Sign In</a>
@@ -26,4 +26,47 @@
         </div>
     </div>
 </div>
+
+<!-- Interactive Components -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+<script>
+    gsap.from('.card', { duration: 1, opacity: 0, y: -50, ease: 'power4.out' });
+    gsap.from('.form-group', { duration: 0.8, opacity: 0, y: 30, stagger: 0.2, ease: 'power4.out' });
+</script>
+
+<style>
+    /* Custom Styles */
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .card {
+        border-radius: 15px;
+        background-color: #fff;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+
+    .form-control {
+        border-radius: 8px;
+    }
+
+    .was-validated .form-control:valid, .form-control.is-valid {
+        border-color: #28a745;
+        background-image: none;
+    }
+
+    .was-validated .form-control:invalid, .form-control.is-invalid {
+        border-color: #dc3545; 
+        background-image: none;
+    }
+</style>
 {% endblock %}
